@@ -1,0 +1,12 @@
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>Class roster</title></head>
+<body>
+  <h1>Students ({{ students|length }})</h1>
+  <ul>
+    {% for name, year in students %}
+      <li>{{ name }} — {{ year }}</li>
+    {% endfor %}
+  </ul>
+</body>
+</html>
