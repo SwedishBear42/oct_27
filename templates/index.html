@@ -2,6 +2,13 @@
 <html>
 <head><meta charset="utf-8"><title>Class roster</title></head>
 <body>
+  <h2>Average skill rating across all students (1 to 5)</h2>
+  <ul>
+    {% for skill, average in averages %}
+      <li>{{ skill }}: {{ average }}</li>
+    {% endfor %}
+  </ul>
+
   <h1>Students ({{ students|length }})</h1>
   <button id="shuffle">Shuffle</button>
   <ul id="names">
