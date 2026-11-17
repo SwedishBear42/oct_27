@@ -3,10 +3,25 @@
 <head><meta charset="utf-8"><title>Class roster</title></head>
 <body>
   <h1>Students ({{ students|length }})</h1>
-  <ul>
+  <button id="shuffle">Shuffle</button>
+  <ul id="names">
     {% for name, year in students %}
       <li>{{ name }} — {{ year }}</li>
     {% endfor %}
   </ul>
+
+  <script>
+    // Runs in the browser only: it reorders the list already on the page and never asks the database.
+    document.getElementById("shuffle").addEventListener("click", function () {
+      const list = document.getElementById("names");
+      const items = Array.from(list.children);
+      // Fisher-Yates shuffle: walk backwards, swapping each item with a random earlier one.
+      for (let i = items.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [items[i], items[j]] = [items[j], items[i]];
+      }
+      items.forEach(function (item) { list.appendChild(item); });  // redraw in the new order
+    });
+  </script>
 </body>
 </html>
